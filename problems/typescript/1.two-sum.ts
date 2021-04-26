@@ -5,20 +5,14 @@
  */
 
 // @lc code=start
-function twoSum(nums: number[], target: number): number[] {
-  let result: number[] = [];
+function twoSum(nums: number[], target: number): number[] | void {
+  const map: Map<number, number> = new Map();
 
-  nums.forEach((num, idx) => {
-    const residues = nums.slice(idx + 1);
-
-    residues.forEach((rNum, rIdx) => {
-      if (num + rNum === target) {
-        result = [idx, idx + 1 + rIdx];
-      }
-    });
-  });
-
-  return result;
+  for (let i = 0; i < nums.length; i++) {
+    const match = map.get(target - nums[i]);
+    if (match != undefined) return [match, i];
+    map.set(nums[i], i);
+  }
 }
 // @lc code=end
 
