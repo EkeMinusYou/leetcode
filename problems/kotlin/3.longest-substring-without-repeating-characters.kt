@@ -7,14 +7,20 @@
 // @lc code=start
 class Solution {
     fun lengthOfLongestSubstring(s: String): Int {
-        var tmp = ""
+        var tmp = HashSet<Char>()
         var max = 0
-        for (c in s.toCharArray()) {
-            if (tmp.contains(c)) {
-                tmp = tmp.takeLastWhile { it != c }
+        var i = 0
+        var j = 0
+
+        while (j < s.length) {
+            if (tmp.contains(s[j])) {
+                tmp.remove(s[i])
+                i++
+            } else {
+                tmp.add(s[j])
+                j++
+                max = Math.max(max, j - i)
             }
-            tmp += c
-            if (tmp.length > max) max = tmp.length
         }
         return max
     }
