@@ -16,7 +16,6 @@ class Solution {
             for (j in grid[i].indices) {
                 if (grid[i][j] == '1') {
                     islandCount++
-                    println("count++")
                     check(i, j)
                 }
             }
